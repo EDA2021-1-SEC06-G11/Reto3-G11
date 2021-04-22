@@ -30,9 +30,24 @@ El controlador se encarga de mediar entre la vista y el modelo.
 """
 
 # Inicialización del Catálogo de libros
+def init():
+    analyzer = model.newAnalyzer()
+    return analyzer
+
 
 # Funciones para la carga de datos
+def loadData(cont):
+    cont_file = cf.data_dir + 'context_content_features-small.csv'
+    input_file = csv.DictReader(open(cont_file,encoding='utf-8'))
+    for music in input_file:
+        model.addMusic(cont, music)
+    return cont
 
 # Funciones de ordenamiento
 
 # Funciones de consulta sobre el catálogo
+
+def getMusicByRange(analyzer,minimo, maximo,car):
+    
+    total = model.getMusicByRange(analyzer,minimo,maximo,car)
+    return total

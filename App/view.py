@@ -24,6 +24,7 @@ import config as cf
 import sys
 import controller
 from DISClib.ADT import list as lt
+from DISClib.ADT import orderedmap as om
 assert cf
 
 
@@ -41,6 +42,10 @@ def printMenu():
 
 catalog = None
 
+
+
+
+
 """
 Menu principal
 """
@@ -49,9 +54,18 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
+        cont = controller.init()
+        controller.loadData(cont)
 
     elif int(inputs[0]) == 2:
-        pass
+        minimo = input('valor minimo: ')
+        maximo = input('valor maximo: ')
+        car = input('caracteristica de contenido: ')
+        total = controller.getMusicByRange(cont,minimo,maximo,car)
+        print('el numero de eventos en ',car,' son: ', total)
+        
+        
+        
 
     else:
         sys.exit(0)
